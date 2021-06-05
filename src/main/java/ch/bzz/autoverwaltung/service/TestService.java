@@ -1,4 +1,4 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.autoverwaltung.service;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

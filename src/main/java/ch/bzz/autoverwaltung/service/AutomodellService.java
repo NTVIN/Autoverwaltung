@@ -1,7 +1,7 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.autoverwaltung.service;
 
-import ch.bzz.bookshelf.data.DataHandler;
-import ch.bzz.bookshelf.model.Publisher;
+import ch.bzz.autoverwaltung.data.DataHandler;
+import ch.bzz.autoverwaltung.model.Automarke;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -10,17 +10,17 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * provides services for the publisher
+ * provides services for the Automarke
  * <p>
- * M133: Bookshelf
+ * Autoverwaltung
  *
- * @author arcel Suter
+ * @author Assvin
  */
 @Path("publisher")
-public class PublisherService {
+public class AutomodellService {
 
     /**
-     * produces a map of all publishers
+     * produces a map of all automarken
      *
      * @return Response
      */
@@ -29,33 +29,33 @@ public class PublisherService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response listPublishers(
     ) {
-        Map<String, Publisher> publisherMap = DataHandler.getPublisherMap();
+        Map<String, Automarke> autoMarkeMap = DataHandler.getAutoMarkeMap();
         Response response = Response
                 .status(200)
-                .entity(publisherMap)
+                .entity(autoMarkeMap)
                 .build();
         return response;
     }
 
     /**
-     * reads a single publisher identified by the uuid
+     * reads a single automarke identified by the uuid
      *
-     * @param publisherUUID the UUID in the URL
+     * @param automarkeUUID the UUID in the URL
      * @return Response
      */
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readPublisher(
-            @QueryParam("uuid") String publisherUUID
+    public Response readAutoMarke(
+            @QueryParam("uuid") String automarkeUUID
     ) {
-        Publisher publisher = null;
+        Automarke automarke = null;
         int httpStatus;
 
         try {
-            UUID.fromString(publisherUUID);
-            publisher = DataHandler.readPublisher(publisherUUID);
-            if (publisher.getPublisher() != null) {
+            UUID.fromString(automarkeUUID);
+            automarke = DataHandler.readAutomarke(automarkeUUID);
+            if (automarke.getPublisher() != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
@@ -66,7 +66,7 @@ public class PublisherService {
 
         Response response = Response
                 .status(httpStatus)
-                .entity(publisher)
+                .entity(automarke)
                 .build();
         return response;
     }

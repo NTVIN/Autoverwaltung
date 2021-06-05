@@ -1,7 +1,7 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.autoverwaltung.service;
 
-import ch.bzz.bookshelf.data.DataHandler;
-import ch.bzz.bookshelf.model.Book;
+import ch.bzz.autoverwaltung.data.DataHandler;
+import ch.bzz.autoverwaltung.model.Automodell;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,53 +13,53 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * provides services for the bookshelf
+ * provides services for the Autoverwaltung
  * <p>
- * M133: Bookshelf
+ * Autoverwaltung
  *
- * @author Marcel Suter
+ * @author Assvin Shanmuganathan
  */
 @Path("book")
-public class BookService {
+public class AutoService {
 
     /**
-     * produces a map of all books
+     * produces a map of all autos
      *
      * @return Response
      */
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listBooks(
+    public Response listAutos(
     ) {
-        Map<String, Book> bookMap = DataHandler.getBookMap();
+        Map<String, Automodell> autoMap = DataHandler.getAutoMap();
         Response response = Response
                 .status(200)
-                .entity(bookMap)
+                .entity(autoMap)
                 .build();
         return response;
 
     }
 
     /**
-     * reads a single book identified by the bookId
+     * reads a single book identified by the autoId
      *
-     * @param bookUUID the bookUUID in the URL
+     * @param autoUUID the autoUUID in the URL
      * @return Response
      */
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readBook(
-            @QueryParam("uuid") String bookUUID
+    public Response readAuto(
+            @QueryParam("uuid") String autoUUID
     ) {
-        Book book = null;
+        Automodell book = null;
         int httpStatus;
 
         try {
-            UUID bookKey = UUID.fromString(bookUUID);
-            book = DataHandler.readBook(bookUUID);
-            if (book.getTitle() != null) {
+            UUID autokey = UUID.fromString(autoUUID);
+            book = DataHandler.readAuto(autoUUID);
+            if (book.getAutomarke() != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;

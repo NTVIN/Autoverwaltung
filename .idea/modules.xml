@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/m133-bookshelf.iml" filepath="$PROJECT_DIR$/m133-bookshelf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AutoVerwaltung.iml" filepath="$PROJECT_DIR$/AutoVerwaltung.iml" />
     </modules>
   </component>
 </project>

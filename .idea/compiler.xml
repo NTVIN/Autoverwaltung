@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="m133-bookshelf" />
+        <module name="AutoVerwaltung" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="m133-bookshelf" target="1.8" />
+      <module name="AutoVerwaltung" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

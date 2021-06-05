@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="m133-bookshelf" />
+          <element id="module-output" name="AutoVerwaltung" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.glassfish.jersey.core:jersey-server:2.32" />
@@ -34,7 +34,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Bookshelf-1.0/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="m133-bookshelf/web/Web" />
+      <element id="javaee-facet-resources" facet="AutoVerwaltung/web/Web" />
     </root>
   </artifact>
 </component>

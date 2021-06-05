@@ -1,4 +1,4 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.autoverwaltung.service;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -20,7 +20,7 @@ import java.util.Set;
 @ApplicationPath("/resource")
 public class Config extends Application {
 
-    private static final String PROPERTIES_FILENAME = "book.properties";
+    private static final String PROPERTIES_FILENAME = "auto.properties";
     private static Properties properties = null;
 
     /**
@@ -32,8 +32,8 @@ public class Config extends Application {
     public Set<Class<?>> getClasses() {
         HashSet providers = new HashSet<Class<?>>();
         providers.add(TestService.class);
-        providers.add(BookService.class);
-        providers.add(PublisherService.class);
+        providers.add(AutoService.class);
+        providers.add(AutomodellService.class);
         return providers;
     }
 
