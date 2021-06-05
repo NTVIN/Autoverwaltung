@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.bzz</groupId>
-    <artifactId>Bookshelf</artifactId>
+    <artifactId>Autoverwaltung</artifactId>
     <version>1.0</version>
-    <name>Bookshelf</name>
+    <name>Autoverwaltung</name>
     <packaging>war</packaging>
 
     <properties>

@@ -19,7 +19,7 @@ import java.util.UUID;
  *
  * @author Assvin Shanmuganathan
  */
-@Path("book")
+@Path("auto")
 public class AutoService {
 
     /**
@@ -42,7 +42,7 @@ public class AutoService {
     }
 
     /**
-     * reads a single book identified by the autoId
+     * reads a single auto identified by the autoId
      *
      * @param autoUUID the autoUUID in the URL
      * @return Response
@@ -53,13 +53,13 @@ public class AutoService {
     public Response readAuto(
             @QueryParam("uuid") String autoUUID
     ) {
-        Automodell book = null;
+        Automodell automodell = null;
         int httpStatus;
 
         try {
             UUID autokey = UUID.fromString(autoUUID);
-            book = DataHandler.readAuto(autoUUID);
-            if (book.getAutomarke() != null) {
+            automodell = DataHandler.readAuto(autoUUID);
+            if (automodell.getAutomarke() != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
@@ -70,7 +70,7 @@ public class AutoService {
 
         Response response = Response
                 .status(httpStatus)
-                .entity(book)
+                .entity(automodell)
                 .build();
         return response;
     }

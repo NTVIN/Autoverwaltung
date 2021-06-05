@@ -16,8 +16,8 @@ import java.util.UUID;
  *
  * @author Assvin
  */
-@Path("publisher")
-public class AutomodellService {
+@Path("automarke")
+public class AutomarkeService {
 
     /**
      * produces a map of all automarken

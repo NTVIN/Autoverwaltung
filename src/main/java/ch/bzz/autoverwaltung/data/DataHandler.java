@@ -109,7 +109,7 @@ public class DataHandler {
      */
     private static void readJSON() {
         try {
-            byte[] jsonData = Files.readAllBytes(Paths.get(Config.getProperty("bookJSON")));
+            byte[] jsonData = Files.readAllBytes(Paths.get(Config.getProperty("autoJSON")));
             ObjectMapper objectMapper = new ObjectMapper();
             Automodell[] automodelle = objectMapper.readValue(jsonData, Automodell[].class);
             for (Automodell automodell : automodelle) {
@@ -138,7 +138,7 @@ public class DataHandler {
         Writer writer;
         FileOutputStream fileOutputStream = null;
 
-        String autoPath = Config.getProperty("bookJSON");
+        String autoPath = Config.getProperty("autoJSON");
         try {
             fileOutputStream = new FileOutputStream(autoPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
