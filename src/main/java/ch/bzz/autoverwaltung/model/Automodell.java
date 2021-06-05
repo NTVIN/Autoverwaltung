@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 public class Automodell {
     private String autoUUID;
     private String modellbezeichnung;
-    private int preis;
+    private String preis;
     private Automarke automarke;
-    private int gewicht;
+    private String gewicht;
     private String leistung;
     private String verbrauch;
 
@@ -71,7 +71,7 @@ public class Automodell {
      *
      * @return value of preis
      */
-    public int getPreis() {
+    public String getPreis() {
         return preis;
     }
 
@@ -81,7 +81,7 @@ public class Automodell {
      * @param preis the value to set
      */
 
-    public void setPreis(Integer preis) {
+    public void setPreis(String preis) {
         this.preis = preis;
     }
 
@@ -109,7 +109,7 @@ public class Automodell {
      *
      * @return value of gewicht
      */
-    public int getGewicht() {
+    public String getGewicht() {
         return gewicht;
     }
 
@@ -119,7 +119,7 @@ public class Automodell {
      * @param gewicht the value to gewicht
      */
 
-    public void setGewicht(Integer gewicht) {
+    public void setGewicht(String gewicht) {
         this.gewicht = gewicht;
     }
 

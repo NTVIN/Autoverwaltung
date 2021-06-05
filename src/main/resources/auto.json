@@ -1,0 +1,26 @@
+[
+  {
+    "autoUUID": "1fcbc248-a7f4-4856-9545-812ffddc82de",
+    "modellbezeichnung": "720",
+    "preis": "200'000-500'000 Franken",
+    "gewicht": "1419kg",
+    "leistung": "720-750PS",
+    "verbrauch": "7,9-18,8l",
+    "automarke": {
+      "automarkeUUID": "7bc77367-0e68-4f0c-8b4d-8bc6b174a37b",
+      "automarke": "Mclaren"
+    }
+  },
+  {
+    "autoUUID": "8917a831-f3e3-4c81-b249-f2df0d26036d",
+    "modellbezeichnung": "620R",
+    "preis": "200'000-300'000 Franken",
+    "gewicht": "1386kg",
+    "leistung": "620PS",
+    "verbrauch": "10.2-15.7l",
+    "automarke": {
+      "automarkeUUID": "e658c691-2ff5-49e1-adce-5b317394d096",
+      "automarke": "Mclaren"
+    }
+  }
+]

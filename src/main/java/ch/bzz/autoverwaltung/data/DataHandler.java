@@ -2,6 +2,7 @@ package ch.bzz.autoverwaltung.data;
 
 import ch.bzz.autoverwaltung.model.Automarke;
 import ch.bzz.autoverwaltung.model.Automodell;
+
 import ch.bzz.autoverwaltung.service.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
