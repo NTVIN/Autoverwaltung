@@ -35,7 +35,7 @@ public class Automarke {
      *
      * @return value of automarke
      */
-    public String getPublisher() {
+    public String getAutomarke() {
         return automarke;
     }
 
@@ -45,7 +45,7 @@ public class Automarke {
      * @param automarke the value to set
      */
 
-    public void setPublisher(String automarke) {
+    public void setAutomarke(String automarke) {
         this.automarke = automarke;
     }
 }

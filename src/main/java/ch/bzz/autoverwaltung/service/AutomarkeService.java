@@ -27,7 +27,7 @@ public class AutomarkeService {
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listPublishers(
+    public Response listAutomarke(
     ) {
         Map<String, Automarke> autoMarkeMap = DataHandler.getAutoMarkeMap();
         Response response = Response
@@ -55,7 +55,7 @@ public class AutomarkeService {
         try {
             UUID.fromString(automarkeUUID);
             automarke = DataHandler.readAutomarke(automarkeUUID);
-            if (automarke.getPublisher() != null) {
+            if (automarke.getAutomarke() != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
