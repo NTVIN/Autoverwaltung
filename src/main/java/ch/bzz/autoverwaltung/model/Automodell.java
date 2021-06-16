@@ -1,7 +1,5 @@
 package ch.bzz.autoverwaltung.model;
 
-import java.math.BigDecimal;
-
 /**
  * ein Automodel einer Marke
  * <p>
@@ -17,16 +15,6 @@ public class Automodell {
     private String gewicht;
     private String leistung;
     private String verbrauch;
-
-
-    public Automodell() {
-        setAutoUUID(null);
-        setModellbezeichnung(null);
-        setPreis(null);
-        setGewicht(null);
-        setLeistung(null);
-        setVerbrauch(null);
-    }
 
     /**
      * Gets the autoUUID
