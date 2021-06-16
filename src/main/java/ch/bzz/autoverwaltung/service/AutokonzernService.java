@@ -1,67 +1,62 @@
 package ch.bzz.autoverwaltung.service;
 
 import ch.bzz.autoverwaltung.data.DataHandler;
-import ch.bzz.autoverwaltung.model.Automodell;
-import ch.bzz.autoverwaltung.model.Automarke;
 import ch.bzz.autoverwaltung.model.Autokonzern;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 import java.util.UUID;
 
 /**
- * provides services for the Autoverwaltung
+ * provides services for the Autokonzern
  * <p>
  * Autoverwaltung
  *
- * @author Assvin Shanmuganathan
+ * @author Assvin
  */
-@Path("auto")
-public class AutoService {
+@Path("autokonzern")
+public class AutokonzernService {
 
     /**
-     * produces a map of all autos
+     * produces a map of all automarken
      *
      * @return Response
      */
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listAutos(
+    public Response listAutokonzern(
     ) {
-        Map<String, Automodell> autoMap = DataHandler.getAutoMap();
+        Map<String, Autokonzern> autokonzernMap = DataHandler.getAutokonzernMap();
         Response response = Response
                 .status(200)
-                .entity(autoMap)
+                .entity(autokonzernMap)
                 .build();
         return response;
-
     }
 
     /**
-     * reads a single auto identified by the autoId
+     * reads a single autokonzern identified by the uuid
      *
-     * @param autoUUID the autoUUID in the URL
+     * @param konzernUUID the UUID in the URL
      * @return Response
      */
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readAuto(
-            @QueryParam("uuid") String autoUUID
+    public Response readAutokonzern(
+            @QueryParam("uuid") String konzernUUID
     ) {
-        Automodell automodell = null;
+        Autokonzern autokonzern = null;
         int httpStatus;
 
         try {
-            UUID autokey = UUID.fromString(autoUUID);
-            automodell = DataHandler.readAuto(autoUUID);
-            if (automodell.getModellbezeichnung() != null) {
+            UUID.fromString(konzernUUID);
+            autokonzern = DataHandler.readAutokonzern(konzernUUID);
+            if (autokonzern.getKonzern() != null) {
                 httpStatus = 200;
             } else {
                 httpStatus = 404;
@@ -72,8 +67,9 @@ public class AutoService {
 
         Response response = Response
                 .status(httpStatus)
-                .entity(automodell)
+                .entity(autokonzern)
                 .build();
         return response;
     }
 }
+

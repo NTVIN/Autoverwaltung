@@ -2,6 +2,7 @@ package ch.bzz.autoverwaltung.data;
 
 import ch.bzz.autoverwaltung.model.Automarke;
 import ch.bzz.autoverwaltung.model.Automodell;
+import ch.bzz.autoverwaltung.model.Autokonzern;
 
 import ch.bzz.autoverwaltung.service.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,7 @@ public class DataHandler {
     private static final DataHandler instance = new DataHandler();
     private static Map<String, Automodell> autoMap;
     private static Map<String, Automarke> autoMarkeMap;
+    private static Map<String, Autokonzern> autokonzernMap;
 
     /**
      * default constructor: defeat instantiation
@@ -31,6 +33,7 @@ public class DataHandler {
     private DataHandler() {
         autoMap = new HashMap<>();
         autoMarkeMap = new HashMap<>();
+        autokonzernMap = new HashMap<>();
         readJSON();
     }
 
@@ -49,7 +52,7 @@ public class DataHandler {
     }
 
     /**
-     * saves a autp
+     * saves a auto
      *
      * @param automodell the book to be saved
      */
@@ -57,6 +60,31 @@ public class DataHandler {
         getAutoMap().put(automodell.getAutoUUID(), automodell);
         writeJSON();
     }
+// end of automodell
+    /**
+     * reads a single autokonzern identified by its uuid
+     *
+     * @param konzernUUID the identifier
+     * @return automarke -object
+     */
+    public static Autokonzern readAutokonzern(String konzernUUID ) {
+        Autokonzern autokonzern = new Autokonzern();
+        if (getAutokonzernMap().containsKey(konzernUUID)) {
+            autokonzern = getAutokonzernMap().get(konzernUUID);
+        }
+        return autokonzern ;
+    }
+
+    /**
+     * saves a autokonzern
+     *
+     * @param autokonzern the publisher to be saved
+     */
+    public static void saveAutokonzern(Autokonzern autokonzern) {
+        getAutokonzernMap().put(autokonzern.getKonzernUUID(), autokonzern);
+        writeJSON();
+    }
+//end of Autokonzern
 
     /**
      * reads a single automarke identified by its uuid
@@ -81,7 +109,7 @@ public class DataHandler {
         getAutoMarkeMap().put(automarke.getAutomarkeUUID(), automarke);
         writeJSON();
     }
-
+// end of automarke
     /**
      * gets the autoMap
      *
@@ -89,6 +117,14 @@ public class DataHandler {
      */
     public static Map<String, Automodell> getAutoMap() {
         return autoMap;
+    }
+    /**
+     * gets the autokonzernMap
+     *
+     * @return the autokonzernMap
+     */
+    public static Map<String, Autokonzern> getAutokonzernMap() {
+        return autokonzernMap;
     }
 
     /**
@@ -100,8 +136,11 @@ public class DataHandler {
         return autoMarkeMap;
     }
 
-    public static void setPublisherMap(Map<String, Automarke> autoMarkeMap) {
+    public static void setAutoMarkeMap(Map<String, Automarke> autoMarkeMap) {
         DataHandler.autoMarkeMap = autoMarkeMap;
+    }
+    public static void setAutokonzernMap(Map<String, Autokonzern> autokonzernMap) {
+        DataHandler.autokonzernMap = autokonzernMap;
     }
 
     /**
@@ -109,21 +148,32 @@ public class DataHandler {
      */
     private static void readJSON() {
         try {
-            byte[] jsonData = Files.readAllBytes(Paths.get(Config.getProperty("autoJSON")));
+            String autoModellPath = Config.getProperty("autoJSON");
+            byte[] jsonData = Files.readAllBytes(Paths.get(autoModellPath));
             ObjectMapper objectMapper = new ObjectMapper();
             Automodell[] automodelle = objectMapper.readValue(jsonData, Automodell[].class);
             for (Automodell automodell : automodelle) {
-                String automarkeUUID = automodell.getAutomarke().getAutomarkeUUID();
+                String autoMarkeUUID = automodell.getAutomarke().getAutomarkeUUID();
                 Automarke automarke;
-                if (getAutoMarkeMap().containsKey(automarkeUUID)) {
-                    automarke = getAutoMarkeMap().get(automarkeUUID);
+                if (getAutoMarkeMap().containsKey(autoMarkeUUID)) {
+                    automarke = getAutoMarkeMap().get(autoMarkeUUID);
                 } else {
                     automarke = automodell.getAutomarke();
-                    getAutoMarkeMap().put(automarkeUUID, automarke);
+                    getAutoMarkeMap().put(autoMarkeUUID, automarke);
                 }
                 automodell.setAutomarke(automarke);
-                getAutoMap().put(automodell.getAutoUUID(), automodell);
 
+                String autokonzernUUID = automodell.getAutokonzern().getKonzernUUID();
+                Autokonzern autokonzern;
+
+                if (getAutokonzernMap().containsKey(autokonzernUUID)) {
+                    autokonzern = getAutokonzernMap().get(autokonzernUUID);
+                } else {
+                    autokonzern = automodell.getAutokonzern();
+                    getAutokonzernMap().put(autokonzernUUID, autokonzern);
+                }
+                automodell.setAutokonzern(autokonzern);
+                getAutoMap().put(automodell.getAutoUUID(), automodell);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,7 +188,7 @@ public class DataHandler {
         Writer writer;
         FileOutputStream fileOutputStream = null;
 
-        String autoPath = Config.getProperty("autoJSON");
+        String autoPath = ch.bzz.autoverwaltung.service.Config.getProperty("autoJSON");
         try {
             fileOutputStream = new FileOutputStream(autoPath);
             writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));

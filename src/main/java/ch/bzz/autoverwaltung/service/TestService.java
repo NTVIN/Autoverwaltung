@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
  * <p>
  * Bookshelf
  *
- * @author Marcel Suter (Ghwalin)
+ * @author Assvin Shanmuganathan
  */
 @Path("test")
 public class TestService {

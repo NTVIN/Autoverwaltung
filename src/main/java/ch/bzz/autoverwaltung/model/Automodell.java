@@ -1,5 +1,7 @@
 package ch.bzz.autoverwaltung.model;
 
+import java.math.BigDecimal;
+
 /**
  * ein Automodel einer Marke
  * <p>
@@ -10,11 +12,14 @@ package ch.bzz.autoverwaltung.model;
 public class Automodell {
     private String autoUUID;
     private String modellbezeichnung;
-    private String preis;
-    private Automarke automarke;
+    private int preis;
     private String gewicht;
-    private String leistung;
+    private int leistung;
     private String verbrauch;
+
+    private Automarke automarke;
+    private Autokonzern autokonzern;
+
 
     /**
      * Gets the autoUUID
@@ -59,7 +64,7 @@ public class Automodell {
      *
      * @return value of preis
      */
-    public String getPreis() {
+    public int getPreis() {
         return preis;
     }
 
@@ -69,34 +74,11 @@ public class Automodell {
      * @param preis the value to set
      */
 
-    public void setPreis(String preis) {
+    public void setPreis(int preis) {
         this.preis = preis;
     }
 
-    /**
-     * Gets the automarke
-     *
-     * @return value of automarke
-     */
-    public Automarke getAutomarke() {
-        return automarke;
-    }
 
-    /**
-     * Sets the automarke
-     *
-     * @param automarke the value to set
-     */
-
-    public void setAutomarke(Automarke automarke) {
-        this.automarke = automarke;
-    }
-
-    /**
-     * Gets the gewicht
-     *
-     * @return value of gewicht
-     */
     public String getGewicht() {
         return gewicht;
     }
@@ -116,7 +98,7 @@ public class Automodell {
      *
      * @return value of leistung
      */
-    public String getLeistung() {
+    public int getLeistung() {
         return leistung;
     }
 
@@ -126,7 +108,7 @@ public class Automodell {
      * @param leistung the value to set
      */
 
-    public void setLeistung(String leistung) {
+    public void setLeistung(int leistung) {
         this.leistung = leistung;
     }
 
@@ -147,5 +129,43 @@ public class Automodell {
 
     public void setVerbrauch(String verbrauch) {
         this.verbrauch = verbrauch;
+    }
+
+    /**
+     * Gets the Automarke
+     *
+     * @return value of Automarke
+     */
+    public Automarke getAutomarke() {
+        return automarke;
+    }
+
+    /**
+     * Sets the automarke
+     *
+     * @param automarke the value to set
+     */
+
+    public void setAutomarke(Automarke automarke) {
+        this.automarke = automarke;
+    }
+
+    /**
+     * Gets the Autokonzern
+     *
+     * @return value of Autokonzern
+     */
+    public Autokonzern getAutokonzern() {
+        return autokonzern;
+    }
+
+    /**
+     * Sets the autokonzern
+     *
+     * @param autokonzern the value to set
+     */
+
+    public void setAutokonzern(Autokonzern autokonzern) {
+        this.autokonzern = autokonzern;
     }
 }

@@ -1,6 +1,6 @@
 package ch.bzz.autoverwaltung.model;
 
-public class AutoKonzern {
+public class Autokonzern {
     private String konzernUUID;
     private String konzern;
 
