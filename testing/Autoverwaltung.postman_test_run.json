@@ -1,0 +1,244 @@
+{
+	"id": "05e943af-13a5-4f47-8013-736514e26df2",
+	"name": "MS1 - Assvin - Autoverwaltung",
+	"timestamp": "2021-06-16T08:02:08.438Z",
+	"collection_id": "288e8982-8bb4-4118-b1bf-73184b2c9b40",
+	"folder_id": 0,
+	"environment_id": "9f1ab2e8-b0a1-44ff-812e-357e1726ab63",
+	"totalPass": 9,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "5b3c36b0-38e4-4acd-83e1-37b17587d60e",
+			"name": "Testservice",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/test/test",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "b83f9c93-1976-45be-9744-06453b2d1bc2",
+			"name": "Autoverwaltung",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/list",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "6db222a2-14e1-4bb4-98a6-68450e0af23c",
+			"name": "ReadAuto",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "34aa62d2-8a07-4886-8cdd-7bebe1f98e37",
+			"name": "Read wrong car",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82df",
+			"time": 13,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2d6d3c14-3894-42da-a4b0-477bab626769",
+			"name": "Read auto with invalid uuid",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=123",
+			"time": 20,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1afffb14-9272-4303-b1c4-c878e0841469",
+			"name": "all automarken",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/list",
+			"time": 13,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				13
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "4c800214-021e-43f6-b5a7-a06712d042b8",
+			"name": "read automarke",
+			"url": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/read?uuid=7bc77367-0e68-4f0c-8b4d-8bc6b174a37b",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				6
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 72,
+	"collection": {
+		"requests": [
+			{
+				"id": "5b3c36b0-38e4-4acd-83e1-37b17587d60e",
+				"method": "GET"
+			},
+			{
+				"id": "b83f9c93-1976-45be-9744-06453b2d1bc2",
+				"method": "GET"
+			},
+			{
+				"id": "6db222a2-14e1-4bb4-98a6-68450e0af23c",
+				"method": "GET"
+			},
+			{
+				"id": "34aa62d2-8a07-4886-8cdd-7bebe1f98e37",
+				"method": "GET"
+			},
+			{
+				"id": "2d6d3c14-3894-42da-a4b0-477bab626769",
+				"method": "GET"
+			},
+			{
+				"id": "1afffb14-9272-4303-b1c4-c878e0841469",
+				"method": "GET"
+			},
+			{
+				"id": "4c800214-021e-43f6-b5a7-a06712d042b8",
+				"method": "GET"
+			}
+		]
+	}
+}
