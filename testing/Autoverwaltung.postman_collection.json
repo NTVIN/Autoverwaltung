@@ -27,14 +27,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/Bookshelf-1.0/resource/test/test",
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/test/test",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"Bookshelf-1.0",
+								"Autoverwaltung-1.0",
 								"resource",
 								"test",
 								"test"
@@ -67,14 +67,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/Bookshelf-1.0/resource/auto/list",
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"Bookshelf-1.0",
+								"Autoverwaltung-1.0",
 								"resource",
 								"auto",
 								"list"
@@ -109,14 +109,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/Bookshelf-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"Bookshelf-1.0",
+								"Autoverwaltung-1.0",
 								"resource",
 								"auto",
 								"read"
@@ -173,14 +173,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/Bookshelf-1.0/resource/automarke/list?uuid",
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/list",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"Bookshelf-1.0",
+								"Autoverwaltung-1.0",
 								"resource",
 								"automarke",
 								"list"
