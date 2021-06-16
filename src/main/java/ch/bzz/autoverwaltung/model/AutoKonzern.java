@@ -1,3 +1,5 @@
+package ch.bzz.autoverwaltung.model;
+
 public class AutoKonzern {
     private String konzernUUID;
     private String konzern;
