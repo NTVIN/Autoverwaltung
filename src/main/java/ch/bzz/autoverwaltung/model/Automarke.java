@@ -5,7 +5,7 @@ package ch.bzz.autoverwaltung.model;
  * <p>
  * Autoverwaltung
  *
- * @author Assvin Shanmuganathan (Ghwalin)
+ * @author Assvin Shanmuganathan
  */
 public class Automarke {
     private String automarkeUUID;

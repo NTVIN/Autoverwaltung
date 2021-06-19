@@ -35,10 +35,10 @@ public class Autokonzern {
     /**
      * Sets the konzern
      *
-     * @param konzern the value to set
+     * @param autokonzern the value to set
      */
 
-    public void setKonzern(String konzern) {
+    public void setKonzern(Autokonzern autokonzern) {
         this.konzern = konzern;
     }
 }

@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * data handler for reading and writing the csv files
@@ -60,7 +61,32 @@ public class DataHandler {
         getAutoMap().put(automodell.getAutoUUID(), automodell);
         writeJSON();
     }
+
+    /**
+     * updates the automodellmap
+     */
+    public static void updateAutomodell() {
+        writeJSON();
+    }
+
+    /**
+     * removes a player from the Automodellmap
+     *
+     * @param autoUUID the uuid of the automodell to be removed
+     * @return success
+     */
+    public static boolean deleteAutomodell(String autoUUID) {
+        if (getAutoMap().remove(autoUUID) != null) {
+            writeJSON();
+            return true;
+        } else
+            return false;
+    }
+
+
 // end of automodell
+
+
     /**
      * reads a single autokonzern identified by its uuid
      *
@@ -78,13 +104,64 @@ public class DataHandler {
     /**
      * saves a autokonzern
      *
-     * @param autokonzern the publisher to be saved
+     * @param autokonzern the konzern to be saved
      */
     public static void saveAutokonzern(Autokonzern autokonzern) {
-        getAutokonzernMap().put(autokonzern.getKonzernUUID(), autokonzern);
-        writeJSON();
+       Automodell automodell = new Automodell();
+       automodell.setAutoUUID(UUID.randomUUID().toString());
+       automodell.setModellbezeichnung("");
+       automodell.setAutokonzern(autokonzern);
+       saveAutomodell(automodell);
     }
+
+    /**
+     * updates the autokonzernmap
+     */
+    public static boolean updateAutokonzern(Autokonzern autokonzern) {
+        boolean found = false;
+        for (Map.Entry<String, Automodell> entry : getAutoMap().entrySet()) {
+            Automodell automodell = entry.getValue();
+            if (automodell.getAutokonzern().getKonzernUUID().equals(autokonzern.getKonzernUUID())) {
+                automodell.setAutokonzern(autokonzern);
+                found = true;
+            }
+        }
+        writeJSON();
+        return found;
+    }
+
+
+    /**
+     * removes a konzern from the konzernmap
+     *
+     * @param konzernUUID the uuid of the shoe to be removed
+     * @return errorcode  0=ok, -1=referential integrity, 1=not found
+     */
+    public static int deleteAutokonzern(String konzernUUID) {
+        int errorcode = 1;
+        for (Map.Entry<String, Automodell> entry : getAutoMap().entrySet()) {
+            Automodell automodell = entry.getValue();
+            if (automodell.getAutokonzern().getKonzernUUID().equals(konzernUUID)) {
+                if (automodell.getModellbezeichnung() == null || automodell.getModellbezeichnung().equals("")) {
+                    deleteAutomodell(automodell.getAutoUUID());
+                    errorcode = 0;
+                } else {
+                    return -1;
+                }
+            }
+        }
+        if (getAutoMap().containsKey(konzernUUID)) {
+            getAutokonzernMap().remove(konzernUUID);
+            errorcode = 0;
+            writeJSON();
+        }
+        return errorcode;
+    }
+
+
 //end of Autokonzern
+
+
 
     /**
      * reads a single automarke identified by its uuid
@@ -106,10 +183,61 @@ public class DataHandler {
      * @param automarke the publisher to be saved
      */
     public static void saveAutomarke(Automarke automarke) {
-        getAutoMarkeMap().put(automarke.getAutomarkeUUID(), automarke);
-        writeJSON();
+        Automodell automodell = new Automodell();
+        automodell.setAutoUUID(UUID.randomUUID().toString());
+        automodell.setModellbezeichnung("");
+        automodell.setAutomarke(automarke);
+        saveAutomodell(automodell);
     }
+
+    /**
+     * updates the AutomarkeMap
+     */
+    public static boolean updateAutomarke(Automarke automarke) {
+        boolean found = false;
+        for (Map.Entry<String, Automodell> entry : getAutoMap().entrySet()) {
+            Automodell automodell = entry.getValue();
+            if (automodell.getAutomarke().getAutomarkeUUID().equals(automarke.getAutomarkeUUID())) {
+                automodell.setAutomarke(automarke);
+                found = true;
+            }
+        }
+        writeJSON();
+        return found;
+    }
+
+    /**
+     * removes a Automarke from the AutomarkeMap
+     *
+     * @param automarkeUUID the uuid of the marke to be removed
+     * @return success
+     */
+    public static int deleteAutomarke(String automarkeUUID) {
+        int errorcode = 1;
+        for (Map.Entry<String, Automodell> entry : getAutoMap().entrySet()) {
+            Automodell automodell = entry.getValue();
+            if (automodell.getAutomarke().getAutomarkeUUID().equals(automarkeUUID)) {
+                if (automodell.getModellbezeichnung() == null || automodell.getModellbezeichnung().equals("")) {
+                    deleteAutomodell(automodell.getAutoUUID());
+                    errorcode = 0;
+                } else {
+                    return -1;
+                }
+            }
+        }
+        if (getAutoMarkeMap().containsKey(automarkeUUID)) {
+            getAutoMarkeMap().remove(automarkeUUID);
+            errorcode = 0;
+            writeJSON();
+        }
+        return errorcode;
+    }
+
+
 // end of automarke
+
+
+
     /**
      * gets the autoMap
      *
