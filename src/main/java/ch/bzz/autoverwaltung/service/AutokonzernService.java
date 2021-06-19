@@ -4,6 +4,9 @@ import ch.bzz.autoverwaltung.data.DataHandler;
 import ch.bzz.autoverwaltung.model.Autokonzern;
 
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -48,6 +51,8 @@ public class AutokonzernService {
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readAutokonzern(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String konzernUUID
     ) {
         Autokonzern autokonzern = null;
@@ -71,5 +76,90 @@ public class AutokonzernService {
                 .build();
         return response;
     }
+
+    /**
+     * creates a new konzern without automodell
+     *
+     * @param autokonzern
+     * @return Response
+     */
+    @POST
+    @Path("create")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createJersey(
+            @Valid @BeanParam Autokonzern autokonzern
+
+    ) {
+        int httpStatus = 200;
+        autokonzern.setKonzernUUID(UUID.randomUUID().toString());
+        DataHandler.saveAutokonzern(autokonzern);
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+    /**
+     * updates the autokonzern
+     *
+     * @param autokonzern
+     * @return Response
+     */
+    @PUT
+    @Path("update")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response updateAutokonzern(
+            @Valid @BeanParam Autokonzern autokonzern
+    ) {
+        int httpStatus = 200;
+
+        if (DataHandler.updateAutokonzern(autokonzern)) {
+            httpStatus = 200;
+        } else {
+            httpStatus = 404;
+        }
+
+        Response response = Response
+                .status(httpStatus)
+                .entity("")
+                .build();
+        return response;
+    }
+
+    /**
+     * delet the autokonzern
+     *
+     * @param konzernUUID
+     * @return Response
+     */
+
+    @DELETE
+    @Path("delete")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteJersey(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String konzernUUID
+    ) {
+        int httpStatusJersey;
+
+        int errorcode = DataHandler.deleteAutokonzern(konzernUUID);
+        if (errorcode == 0) httpStatusJersey = 200;
+        else if (errorcode == -1) httpStatusJersey = 409;
+        else httpStatusJersey = 404;
+
+
+        Response response = Response
+                .status(httpStatusJersey)
+                .entity("")
+                .build();
+        return response;
+    }
+
+
+
+
+
 }
 
