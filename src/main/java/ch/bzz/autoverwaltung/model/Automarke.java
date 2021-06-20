@@ -1,5 +1,10 @@
 package ch.bzz.autoverwaltung.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
+
 /**
  * a Automarke of a Automodell
  * <p>
@@ -8,7 +13,14 @@ package ch.bzz.autoverwaltung.model;
  * @author Assvin Shanmuganathan
  */
 public class Automarke {
+
+    @FormParam("automarkeUUID")
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String automarkeUUID;
+
+    @FormParam("automarke")
+    @NotEmpty
+    @Size(min = 2, max = 40)
     private String automarke;
 
     /**

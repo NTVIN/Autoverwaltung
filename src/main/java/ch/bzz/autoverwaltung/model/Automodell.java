@@ -1,5 +1,7 @@
 package ch.bzz.autoverwaltung.model;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
 import java.math.BigDecimal;
 
 /**
@@ -10,11 +12,34 @@ import java.math.BigDecimal;
  * @author Assvin Shanmuganathan
  */
 public class Automodell {
+
+    @FormParam("autoUUID")
+    @Pattern(regexp = "|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
     private String autoUUID;
+
+    @FormParam("modellbezeichnung")
+    @NotEmpty
+    @Size(min=5, max=50)
     private String modellbezeichnung;
+
+    @FormParam("preis")
+    @DecimalMin("1")
+    @DecimalMax("1000000000")
     private int preis;
+
+    @FormParam("gewicht")
+    @NotEmpty
+    @Size(min=5, max=50)
     private String gewicht;
+
+    @FormParam("leistung")
+    @DecimalMin("90")
+    @DecimalMax("5000")
     private int leistung;
+
+    @FormParam("verbrauch")
+    @NotEmpty
+    @Size(min=5, max=50)
     private String verbrauch;
 
     private Automarke automarke;
