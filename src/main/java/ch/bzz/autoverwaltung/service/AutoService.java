@@ -99,7 +99,7 @@ public class AutoService {
         Automarke automarke = DataHandler.readAutomarke(automarkeUUID);
         Autokonzern autokonzern = DataHandler.readAutokonzern(konzernUUID);
 
-        if (automarke.getAutomarke() != null) {
+        if (automarke!= null) {
             automodell.setAutomarke(automarke);
             DataHandler.saveAutomodell(automodell);
             httpStatus = 200;
@@ -141,7 +141,7 @@ public class AutoService {
             @FormParam("automarkeUUID") String automarkeUUID,
             @FormParam("konzernUUID") String konzernUUID
     ) {
-        int httpStatus;
+        int httpStatus = 200;
         Automodell oldAutomodell = DataHandler.readAuto(automodell.getAutoUUID());
 
         if (oldAutomodell.getModellbezeichnung() != null) {

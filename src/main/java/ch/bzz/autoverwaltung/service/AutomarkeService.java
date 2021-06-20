@@ -99,7 +99,7 @@ public class AutomarkeService {
         return response;
     }
     /**
-     * updates the shoes
+     * updates the automarke
      * @param automarke
      * @return Response
      */
@@ -109,9 +109,9 @@ public class AutomarkeService {
     public Response updateAutomarke(
             @Valid @BeanParam Automarke automarke
     ) {
-        int httpStatus = 200;
+        int httpStatus= 200;
 
-        ;
+
         if (DataHandler.updateAutomarke(automarke)) {
             httpStatus = 200;
         } else {
