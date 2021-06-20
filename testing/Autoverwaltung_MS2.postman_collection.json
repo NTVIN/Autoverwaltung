@@ -1,0 +1,965 @@
+{
+	"info": {
+		"_postman_id": "85c10782-d79f-4a7e-b4f4-9562fb48403a",
+		"name": "Autoverwaltung",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MS1",
+			"item": [
+				{
+					"name": "Testservice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/test/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"test",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autoverwaltung",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validate response\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.expect(pm.response.text()).to.include(\"preis\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReadAuto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validate response\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.modellbezeichnung).to.eql(\"720s\");\r",
+									"    pm.expect(responseJson.gewicht).to.eql(\"1419kg\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"read"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1fcbc248-a7f4-4856-9545-812ffddc82de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read wrong car",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=1fcbc248-a7f4-4856-9545-812ffddc82df",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"read"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1fcbc248-a7f4-4856-9545-812ffddc82df"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read auto with invalid uuid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/read?uuid=123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"read"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all automarken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validate response\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.expect(pm.response.text()).to.include(\"automarke\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"automarke",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read automarke",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/read?uuid=7bc77367-0e68-4f0c-8b4d-8bc6b174a37b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"automarke",
+								"read"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "7bc77367-0e68-4f0c-8b4d-8bc6b174a37b"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MS2",
+			"item": [
+				{
+					"name": "Insert Auto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "autoUUID",
+									"value": "c788a155-1af6-48f1-af62-7b644760cd67",
+									"type": "text"
+								},
+								{
+									"key": "modellbezeichnung",
+									"value": "765lt",
+									"type": "text"
+								},
+								{
+									"key": "preis",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "gewicht",
+									"value": "1300kg",
+									"type": "text"
+								},
+								{
+									"key": "leistung",
+									"value": "765",
+									"type": "text"
+								},
+								{
+									"key": "verbrauch",
+									"value": "11.0l",
+									"type": "text"
+								},
+								{
+									"key": "konzernUUID",
+									"value": "369b9c05-e4d3-4e74-b9db-814b5269bf55",
+									"type": "text"
+								},
+								{
+									"key": "automarkeUUID",
+									"value": "52077f58-816a-4ea7-a0cd-540c35a9444f",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Auto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "autoUUID",
+									"value": "54f4fa21-9d78-4d12-9e58-eea58c1c138b",
+									"type": "text"
+								},
+								{
+									"key": "modellbezeichnung",
+									"value": "620r",
+									"type": "text"
+								},
+								{
+									"key": "preis",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "gewicht",
+									"value": "1300",
+									"type": "text"
+								},
+								{
+									"key": "leistung",
+									"value": "620",
+									"type": "text"
+								},
+								{
+									"key": "verbrauch",
+									"value": "10.0",
+									"type": "text"
+								},
+								{
+									"key": "konzernUUID",
+									"value": "a524ca4c-6c57-48ef-ae19-956d093d4e8a",
+									"type": "text"
+								},
+								{
+									"key": "automarkeUUID",
+									"value": "0b22819b-bc92-47be-a7e3-2b69243edddb",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update unknown Auto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "autoUUID",
+									"value": "925d69d2-6d65-460e-9aa7-fb1ee9eaedb1",
+									"type": "text"
+								},
+								{
+									"key": "modellbezeichnung",
+									"value": "600",
+									"type": "text"
+								},
+								{
+									"key": "preis",
+									"value": "150000",
+									"type": "text"
+								},
+								{
+									"key": "gewicht",
+									"value": "1320kg",
+									"type": "text"
+								},
+								{
+									"key": "leistung",
+									"value": "600",
+									"type": "text"
+								},
+								{
+									"key": "verbrauch",
+									"value": "10.0l",
+									"type": "text"
+								},
+								{
+									"key": "konzernUUID",
+									"value": "94ca12a9-5e60-45c5-a0fa-f060d0303968",
+									"type": "text"
+								},
+								{
+									"key": "automarkeUUID",
+									"value": "c3694cd3-34b5-4fac-89a5-6f10e4c4ab57",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Auto invalid UUID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "autoUUID",
+									"value": "54f4a21-9d78-4d12-9e58-eea58c1c138b",
+									"type": "text"
+								},
+								{
+									"key": "modellbezeichnung",
+									"value": "620r",
+									"type": "text"
+								},
+								{
+									"key": "preis",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "gewicht",
+									"value": "1300",
+									"type": "text"
+								},
+								{
+									"key": "leistung",
+									"value": "620",
+									"type": "text"
+								},
+								{
+									"key": "verbrauch",
+									"value": "10.0",
+									"type": "text"
+								},
+								{
+									"key": "konzernUUID",
+									"value": "a524ca4c-6c57-48ef-ae19-956d093d4e8a",
+									"type": "text"
+								},
+								{
+									"key": "automarkeUUID",
+									"value": "0b22819b-bc92-47be-a7e3-2b69243edddb",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Auto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/delete?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1fcbc248-a7f4-4856-9545-812ffddc82de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete unknown Auto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/delete?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1fcbc248-a7f4-4856-9545-812ffddc82de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Updates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validate response\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.expect(pm.response.text()).to.include(\"newAuto\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"570s\");\r",
+									"    pm.expect(pm.response.text()).not.to.include(\"An Echo Of Things To Come\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Automarke",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "update Automarke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "automarke",
+									"value": "Porsche",
+									"type": "text"
+								},
+								{
+									"key": "automarkeUUID",
+									"value": "778681a4-9e5e-426b-9d14-87850295e4d4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"automarke",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Automarke not allowed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/automarke/delete?uuid=06fc334d-7b02-434f-9222-6544d30d8832",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"automarke",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "06fc334d-7b02-434f-9222-6544d30d8832"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Automarke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/delete?uuid=1fcbc248-a7f4-4856-9545-812ffddc82de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1fcbc248-a7f4-4856-9545-812ffddc82de"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Updates Automarke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"validate response\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.expect(pm.response.text()).to.include(\"newAuto\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"570s\");\r",
+									"    pm.expect(pm.response.text()).not.to.include(\"An Echo Of Things To Come\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/auto/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"auto",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Autoverwaltung-1.0/resource/test/restore",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autoverwaltung-1.0",
+								"resource",
+								"test",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
