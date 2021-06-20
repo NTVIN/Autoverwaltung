@@ -94,12 +94,12 @@ public class AutoService {
             @FormParam("automarkeUUID") String automarkeUUID,
             @FormParam("konzernUUID") String konzernUUID
     ) {
-        int httpStatus = 200;
+        int httpStatus;
         automodell.setAutoUUID(UUID.randomUUID().toString());
         Automarke automarke = DataHandler.readAutomarke(automarkeUUID);
         Autokonzern autokonzern = DataHandler.readAutokonzern(konzernUUID);
 
-        if (automarke != null) {
+        if (automarke.getAutomarke() != null) {
             automodell.setAutomarke(automarke);
             DataHandler.saveAutomodell(automodell);
             httpStatus = 200;
@@ -141,7 +141,7 @@ public class AutoService {
             @FormParam("automarkeUUID") String automarkeUUID,
             @FormParam("konzernUUID") String konzernUUID
     ) {
-        int httpStatus = 200;
+        int httpStatus;
         Automodell oldAutomodell = DataHandler.readAuto(automodell.getAutoUUID());
 
         if (oldAutomodell.getModellbezeichnung() != null) {
@@ -187,16 +187,11 @@ public class AutoService {
     ) {
         int httpStatus;
 
-        try {
-            UUID.fromString(autoUUID);
+        if (DataHandler.deleteAutomodell(autoUUID)) {
+            httpStatus = 200;
 
-            if (DataHandler.deleteAutomodell(autoUUID)) {
-                httpStatus = 200;
-            } else {
-                httpStatus = 404;
-            }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
+        } else {
+            httpStatus = 404;
         }
 
         Response response = Response
@@ -217,7 +212,7 @@ public class AutoService {
      * @param verbrauch
      * @param autoUUID
      * @param konzernUUID
-     * @param
+     * @param automarkeUUID
      */
 
     private void setValues(

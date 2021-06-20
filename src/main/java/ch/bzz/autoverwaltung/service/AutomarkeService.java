@@ -1,7 +1,9 @@
 package ch.bzz.autoverwaltung.service;
 
 import ch.bzz.autoverwaltung.data.DataHandler;
+import ch.bzz.autoverwaltung.model.Autokonzern;
 import ch.bzz.autoverwaltung.model.Automarke;
+import ch.bzz.autoverwaltung.model.Automodell;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;

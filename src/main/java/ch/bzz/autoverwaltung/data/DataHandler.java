@@ -35,8 +35,17 @@ public class DataHandler {
         autoMap = new HashMap<>();
         autoMarkeMap = new HashMap<>();
         autokonzernMap = new HashMap<>();
-        readJSON();
+        readJSON("autoJSON");
     }
+
+    public static void restoreData() {
+        autoMap = new HashMap<>();
+        autoMarkeMap = new HashMap<>();
+        autokonzernMap = new HashMap<>();
+        readJSON("backupJSON");
+    }
+
+
 
     /**
      * reads a single book identified by its uuid
@@ -274,9 +283,9 @@ public class DataHandler {
     /**
      * reads the autos and automarken
      */
-    private static void readJSON() {
+    private static void readJSON(String properties) {
         try {
-            String autoModellPath = Config.getProperty("autoJSON");
+            String autoModellPath = Config.getProperty(properties);
             byte[] jsonData = Files.readAllBytes(Paths.get(autoModellPath));
             ObjectMapper objectMapper = new ObjectMapper();
             Automodell[] automodelle = objectMapper.readValue(jsonData, Automodell[].class);
