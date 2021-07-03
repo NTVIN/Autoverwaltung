@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Assvin Shanmuganathan"/>
+    <meta name="project" content="Autoverwaltung"/>
+    <meta name="description" content="Auto form edit"/>
+    <title>Buch bearbeiten</title>
+</head>
+<body>
+<form id="autoeditForm" name="autoedit">
+    <h3>Auto bearbeiten</h3>
+    <div id="message" style="color: red;"></div>
+    <button type="button" id="logoff">Abmelden</button>
+    <table>
+        <tr>
+            <td><label for="modellbezeichnung">Auto</label></td>
+            <td>
+                <input id="modellbezeichnung" name="modellbezeichnung" type="text" size="50" minlength="2"
+                       maxlength="50" required/>
+                <input id="autoUUID" name="autoUUID" type="hidden"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="automarke">Automarke</label></td>
+            <td><input id="automarke" name="automarke" type="text" size="50" minlength="2" maxlength="40" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="autokonzern">Autokonzern</label></td>
+            <td><input id="autokonzern" name="autokonzern" type="text" size="50" minlength="2" maxlength="40" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="preis">Preis</label></td>
+            <td><input id="preis" name="preis" type="text" size="50" minlength="2" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td><label for="leistung">Leistung</label></td>
+            <td><input id="leistung" name="liestung" type="text" size="50" minlength="2" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td><label for="gewicht">Gewicht</label></td>
+            <td><input id="gewicht" name="gewicht" type="text" size="50" minlength="2" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td><label for="verbrauch">Verbrauch</label></td>
+            <td><input id="verbrauch" name="verbruach" type="text" size="50" minlength="2" maxlength="40" required/>
+            </td>
+        </tr>
+
+
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button id="save" type="submit">Speichern</button>
+            </td>
+            <td>
+                <button id="reset" type="reset">Zurücksetzen</button>
+            </td>
+            <td>
+                <button id="cancel" type="button">Abbruch</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./js/autoedit.js"></script>
+<script src="./js/util.js"></script>
+<script src="./js/js.cookie.js"></script>
+</body>
+</html>
