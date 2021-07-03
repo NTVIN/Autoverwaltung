@@ -37,7 +37,7 @@ function sendLogin(form) {
             data: $("#loginForm").serialize()
         })
         .done(function (jsonData) {
-            window.location.href = "./bookshelf.html";
+            window.location.href = "./autoverwaltung.html";
         })
         .fail(function (xhr, status, errorThrown) {
             if (xhr.status == 401) {
