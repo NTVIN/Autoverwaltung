@@ -153,7 +153,7 @@ function loadAutokonzern() {
 
 function showAutokonzern(autokonzern) {
 
-    $.each(autokonzern, function (uuid, automarke) {
+    $.each(autokonzern, function (uuid, autokonzern) {
         $('#autokonzern').append($('<option>', {
             value: autokonzern.konzernUUID,
             text: autokonzern.autokonzern
